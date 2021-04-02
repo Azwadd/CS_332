@@ -11,31 +11,33 @@ family functions. After executing the command, it asks for a new command input (
 child). The interpreter program will get terminated when the user enters quit. */
 int main(int argc, char *argv[]) {
     while (1) {
-        char command[9999];
+        char cmd[1000];
         printf("*> ");
-        scanf(" %[^\n]s", command);
-        if (!strcmp(command, "quit")) { return 0; } // quit - close interpreter
+        scanf(" %[^\n]s", cmd);
+        if (!strcmp(cmd, "quit")) { return 0; } // quit - close interpreter
 
         // turn the user input into a array that execvp can read
-        int size = 2;
+        int size = 1;
         char* arg[size]; // dynamic string array
-        char* token = strtok(command, " ");
+        char* token = strtok(cmd, " ");
         while (token != NULL) {
-            arg[size - 2] = token;
+            arg[size - 1] = token;
             size++;
             token = strtok(NULL, " ");
         }
-        arg[size - 2] = NULL;
+        arg[size - 1] = NULL; // last element should be set to null
 
         pid_t pid = fork();
         if (pid == -1) {
-            perror("Fork() Error");
+            perror("Fork() Error\n");
+            printf("The current command will be skipped because the child process failed to be created.\n");
         } else if (pid == 0) {
             // Child Process //
             execvp(arg[0], arg); // attempts executes command
             printf("Command could not be executed\n"); // only prints if error occurs in execvp
         } else {
             wait(&pid);
+            memset(cmd, 0, 1000);
         }
     }
 }
