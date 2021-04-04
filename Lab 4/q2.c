@@ -5,9 +5,9 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <string.h>
-#define chapters 2
-#define hwPerChapter 2
-#define students 10
+#define chapters 5 // predefined by source.txt
+#define hwPerChapter 2 // predefined by source.txt
+#define students 10  // predefined by assignment instructions
 #define quantityOfGrades chapters*hwPerChapter*students
 
 int main() {
@@ -43,11 +43,10 @@ int main() {
                     perror("Fork() Error");
                     return -1;
                 } else if (pidWorker == 0) {
-                    printf("yes");
-                    for (int i = count+4;i < size;i+=4) {
-                        grades[count] += grades[i];
+                    for (int i = count+chapters*hwPerChapter;i < size;i+=chapters*hwPerChapter) {
+                        grades[count] += grades[i]; // essentially the way the
                     }
-                    printf("%d ", grades[count]);
+                    printf("The average for chapter %d, homework %d is %f\n", (int)count/2+1, count%2, (double)grades[count]/10);
                     return 0;
                 } else {
                     wait(&pidWorker);
