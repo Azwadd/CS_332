@@ -6,19 +6,25 @@
 #include <unistd.h>
 #include <pthread.h>
 #define threads 4
-int n = 1, s = 1;
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
-void *runner() {
-    char array[5] = "North";
-    printf("%s Tunbridge #%d farmer can cross the bridge\n", array, s);
+struct parameters {
+    int c;
+    char* bridge;
+};
+
+void *runner(void *params) {
+    //pthread_mutex_lock(&lock);
+    struct parameters *args = params;
+    args->c++;
+    printf("%s#%d farmer can cross the bridge\n", args->bridge, args->c);
 
     srand(time(NULL));
-    printf("%s Tunbridge #%d is traveling on the bridge...\n", array, s);
+    printf("%s#%d is traveling on the bridge...\n", args->bridge, args->c);
     sleep(rand() % 3);
 
-    printf("%s Tunbridge #%d farmer has left the bridge\n\n", array, s);
-    s++;
-    //pthread_mutex_unlock(&mutex1);
+    printf("%s#%d farmer has left the bridge\n\n", args->bridge, args->c);
+    //pthread_mutex_unlock(&lock);
     pthread_exit(0);
 }
 
@@ -27,13 +33,23 @@ int main() {
     pthread_t south[threads];
     pthread_attr_t attr;
     pthread_attr_init(&attr);
-    pthread_mutex_t lock;
     pthread_mutex_init(&lock, NULL);
+    struct parameters params[2];
+    params[0].c = 0;
+    params[0].bridge = "North Tunbridge ";
+    params[1].c = 0;
+    params[1].bridge = "South Tunbridge ";
 
-    pthread_create(&north[0], &attr, runner, NULL);
-    pthread_join(north[0],NULL);
-    /*for(int i = 0; i < threads; i++){
-        pthread_create(&north[i], NULL, runn, NULL);
-        pthread_create(&south[i], NULL, SouthFarmer, NULL);
-    }*/
+    for(int i = 0; i < threads;i++) {
+        pthread_create(&north[i], &attr, runner, (void *)&params[0]);
+        pthread_create(&south[i], &attr, runner, (void *)&params[1]);
+    }
+
+    for (int i = 0; i < threads;i++) {
+        pthread_join(north[i],NULL);
+        pthread_join(south[i],NULL);
+
+    }
+
+    pthread_mutex_destroy(&lock);
 }
