@@ -1,4 +1,5 @@
-
+/* CS 332 - Operating Systems */
+/* Lab 4 - Part 2 by Azwad Shameem */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -36,6 +37,7 @@ int main() {
             perror("Fork() Error");
             return -1;
         } else if (pidManager == 0) {
+            printf("\nThis is the Manger #%d Process\n", manager+1);
             // Loop to create a worker per homeworks per chapter
             for (int worker = 0;worker < hwPerChapter;worker++, count++) {
                 pid_t pidWorker = fork();
@@ -46,6 +48,7 @@ int main() {
                     for (int i = count+chapters*hwPerChapter;i < size;i+=chapters*hwPerChapter) {
                         grades[count] += grades[i]; // essentially the way the
                     }
+                    printf("This is the Worker #%d Process\n", count+1);
                     printf("The average for chapter %d, homework %d is %f\n", (int)count/2+1, count%2, (double)grades[count]/10);
                     return 0;
                 } else {
