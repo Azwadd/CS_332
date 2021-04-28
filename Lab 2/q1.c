@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
+/* Write a program q1.c, and let the parent process produce two child processes.*/
 int main() {
     pid_t pid1, pid2;
     pid1 = fork();  // creates child 1 //

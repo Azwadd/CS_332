@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
+/* Consider the parent process as P. The program consists of fork() system call statements placed at different points in the code
+ * to create new processes Q and R. The program also shows three variables: a, b, and pid - with the print out of these variables
+ * occurring from various processes. Show the values of pid, a, and b printed by the processes P, Q, and R.*/
 int main() {
     int a = 10, b =25, fq = 0, fr = 0;
     fq= fork(); // fork a child - call it process Q //
