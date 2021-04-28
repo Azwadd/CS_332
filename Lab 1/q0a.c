@@ -1,3 +1,5 @@
+// CS 332 - Operating Systems Lab //
+// Lab 1 - Part 0 - A by Azwad Shameem //
 #include <stdio.h>
 #include <unistd.h>
 #include <errno.h>
