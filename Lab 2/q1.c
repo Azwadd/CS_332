@@ -16,7 +16,7 @@ int main() {
         if ((pid = fork()) < 0) { // create child 2  and error checking in case fork does not create a child //
             perror("Forking Error with child 2");
             return -1;
-        } else if (pid2 == 0) {
+        } else if (pid == 0) {
             printf("I am first second, my pid is: %d\n", getpid()); // child 2 prints out the desired string and its pid //
         } else {
             wait(&pid); // waits for child 2 to terminate //
