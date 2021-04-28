@@ -1,3 +1,5 @@
+// CS 332 - Operating Systems Lab //
+// Lab 3 - Part 2 by Azwad Shameem //
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdio.h>
