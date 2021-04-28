@@ -32,7 +32,7 @@ void *run(void *param) {
     pthread_exit(0);
 } 
 
-/*Develop a multithreading app that can find the integer in the range 1 to 10000 that has the largest
+/*Develop a multithreading program that can find the integer in the range 1 to 100000 that has the largest
 number of divisors. It should print that integer as well as the time spent to finish the calculation. You
 can use any language (e.g. C, Java, or Python), and Any API library.*/
 int main() {   
