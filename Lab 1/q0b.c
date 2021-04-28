@@ -4,7 +4,8 @@
 #include <fcntl.h>
 #include <string.h>
 
-/* Question 0. Part (b) Write a C program where open system call creates a new file (say, destination.txt and then opens it. (Hint: use the bitwise OR flag) */
+/* Question 0. Part (b) Write a C program where open system call creates a new file (say, destination.txt and then opens it.
+ * (Hint: use the bitwise OR flag) */
 int main (int argc, char* argv[]) {
 	if (argc < 2) {
 		printf("Improper usage. Use the format --> S'./create filename'\n");

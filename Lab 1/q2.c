@@ -3,10 +3,9 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
-/* Question 2. The cp command copies the source file specified by the SourceFile paramtere to the destination file specified by the DestinationFile parameter.
-Write a C program to the to implement a command called ​printcontent ​that takes a (text) filename as argument and displays 
-its contents. Report an appropriate message if the file does not exist or can’t be opened (i.e.the file doesn’t have read permission). 
-You are to use ​open()​,​read()​,​write()​ and close() ​system calls. */
+/* Question 2. The cp command copies the source file specified by the SourceFile parameter to the destination file specified
+ * by the DestinationFile parameter. Write a C program that mimics the cp command using open() systemcall to open source.txt
+ * file in read-only mode and copy the contents of it to destination.txt using read() and write() system calls.*/
 int main (int argc, char* argv[]) {
 	if (argc < 3) { 	
 		printf("Improper usage. Please use format --> './a.out SourceFile DestinationFile'\n");      
