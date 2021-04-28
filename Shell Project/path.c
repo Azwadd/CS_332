@@ -1,3 +1,5 @@
+/* CS 332 - Operating Systems
+ * Shell - Path by Azwad Shameem */
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
