@@ -16,7 +16,7 @@ int main() {
 	int p[2];   
 	pipe(p); // pipe for communication //
 
-	pid = fork();	// Create child 1 //
+	pid = fork();	// Creates child 1
 	if (pid < 0) {
 		perror("\nForking error with child 1");	// Error reporting if child 1 cannot be created //
 		return -1;
