@@ -50,14 +50,7 @@ int main() {
             V(lock);
             P(mutex_agent);
         }
-
-        // Iterations have been completed so we stop the agent and the smokers
-        kill(smoker_matches, SIGINT);
-        kill(smoker_paper, SIGINT);
-        kill(smoker_tobacco, SIGINT);
         return 0;
-
-
     } else {
         if ((smoker_matches = fork()) < 0) {
             printf("Error: fork() - [%s]\n", strerror(errno));
