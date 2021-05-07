@@ -4,7 +4,6 @@
 #define CYLINDERS 10000
 #define REQUESTS 1000
 
-int compare(const void *a, const void *b);
 int FCFS(int disk[], int start);
 int SSTF(int disk[], int start);
 int SCAN(int disk[], int start);
