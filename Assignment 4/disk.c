@@ -149,7 +149,7 @@ int CSCAN(int disk[], int head) {
         // Current = 10000 is just a placeholder, obviously max distance from any point in this cylinder is 9999
         // thus current is assured to be changed since we are finding minimum distance
         // current is supposed to represent minimum distance from the current head pointer on the disk
-        int current = CYLINDERS-1;
+        int current = CYLINDERS;
         // C-SCAN goes to the highest element in the disk first
         if (toMax) {
             for(int i = 0;i < REQUESTS;i++) {
